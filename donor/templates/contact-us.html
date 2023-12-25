@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Donor LogIn{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    Contact Us
+                </div>
+                <div class="card-body">
+                    <form action="{% url "login" %}{% if request %}{% endif %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="name" class="small text-muted">Name</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-primary">LogIn</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

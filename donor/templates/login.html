@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Donor LogIn{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-lg-7 text-center">
+            <img src="https://voicetrustmadurai.org/wp-content/uploads/2022/03/Blood-Donation-1.jpg" class="mx-auto" style="width: 63%" alt="">
+        </div>
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    Log In
+                </div>
+                <div class="card-body">
+                    <form action="{% url "login" %}{% if request %}{% endif %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="username" class="small text-muted">Username</label>
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="small text-muted">Password</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-primary">LogIn</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

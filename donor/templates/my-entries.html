@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}My Entries{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Blood Group</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>City</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if donors %}
+                            {% for donor in donors %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{donor.name}}</td>
+                                <td>{{donor.blood_group}}</td>
+                                <td>{{donor.email}}</td>
+                                <td>{{donor.contact}}</td>
+                                <td>{{donor.city}}</td>
+                                <td>
+                                    <form action="{% url 'delete-donor' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="donor-id" value="{{donor.id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <a href="{% url 'donor-register' %}" class="btn btn-lg px-5 my-5 btn-success">Add Donor</a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
